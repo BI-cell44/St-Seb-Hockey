@@ -67,6 +67,12 @@ for y in range(186,280):
         if y>=268:
             t=(y-268)/11;o=src[x,y];c=tuple(round(c[q]*(1-t)+o[q]*t) for q in range(3))
         S(x,y,c)
+HC=[3.0313057577023543e-06,-0.003490761959377561,1.5208397946521053,-297.14919107036974,22141.43079004185]
+for x in range(262,329):
+    yt=float(np.polyval(HC,x));blue=P(x,int(yt)-7)
+    for y in range(int(yt)-4,int(yt)+5):
+        cov=min(1,max(0,(y+1)-yt))
+        S(x,y,tuple(round(WH[q]*cov+blue[q]*(1-cov)) for q in range(3)))
 # ---- bas du bouclier (géométrie) ----
 kL,bL=1.0907,-337.9; kR,bR=-1.0924,779.0; TX,TY,CK=220,485,2.2
 nL=math.sqrt(1+kL*kL);nR=math.sqrt(1+kR*kR);nC=math.sqrt(1+1/CK**2)
@@ -75,8 +81,9 @@ def dist(x,y):
     dc=(TY-abs(x-TX)/CK-y)/nC
     return min(dl,dr,dc)
 def stick(x,y):
-    a=abs(x-(182.5-(y-396)*0.226)); b=abs(x-(255.5+(y-396)*0.214))
-    return min(a-4.8,b-4.3)
+    l1=176-(y-396)*0.167-0.5; r1=189.5-(y-396)*0.29
+    l2=250-0.5+(y-396)*0.286; r2=261.5+(y-396)*0.155
+    return min(max(l1-x,x-r1),max(l2-x,x-r2))
 BLB=(5,42,205);ORB=(249,102,12)
 def sub_bot(x,y):
     d=dist(x,y)
@@ -103,7 +110,7 @@ y0=(Y0-2)*SC
 sub=mask[y0:]
 d=ndimage.distance_transform_edt(sub)/SC
 yy,xx=np.mgrid[y0:Hh,0:Ww].astype(float);X=(xx+0.5)/SC;Yy=(yy+0.5)/SC
-st=np.minimum(np.abs(X-(182.5-(Yy-396)*0.226))-4.8,np.abs(X-(255.5+(Yy-396)*0.214))-4.3)
+st=np.minimum(np.maximum((176-(Yy-396)*0.167-0.5)-X,X-(189.5-(Yy-396)*0.29)),np.maximum((249.5+(Yy-396)*0.286)-X,X-(261.5+(Yy-396)*0.155)))
 BLB=np.array((5,42,205));ORB=np.array((249,102,12));WHa=np.array(WH);INa=np.array(INTB);BGa=np.array(BG)
 C=np.empty(d.shape+(3,));C[:]=INa
 C[d<30.5]=ORB
@@ -116,9 +123,21 @@ lo=C.reshape(C.shape[0]//SC,SC,C.shape[1]//SC,SC,3).mean((1,3))
 for y in range(Y0,H2):
     for x in range(W):
         c=tuple(int(round(v)) for v in lo[y-(Y0-2),x])
-        between=(182.5-(y-396)*0.226)<=x<=(255.5+(y-396)*0.214)
+        between=(176-(y-396)*0.167-11)<=x<=(261.5+(y-396)*0.155+11)
         if y<=Y1 and not between:
             t=min(1,max(0,(y-434)/(Y1-434)));o=P(x,y);c=tuple(round(o[q]*(1-t)+c[q]*t) for q in range(3))
+        S(x,y,c)
+def sub_st(x,y):
+    v=stick(x,y)
+    if v<0: return WH
+    if v<5.5: return BLB
+    return None
+for y in range(397,Y0):
+    for x in range(150,280):
+        if stick(x+0.5,y+0.5)>7: continue
+        o=P(x,y);c=aa(sub_st,x,y,o)
+        if y<402:
+            t=(y-397)/5;c=tuple(round(o[q]*(1-t)+c[q]*t) for q in range(3))
         S(x,y,c)
 out.save('/tmp/logo/clean.png')
 # ---- transparence : contour blanc net d'épaisseur fixe ----
