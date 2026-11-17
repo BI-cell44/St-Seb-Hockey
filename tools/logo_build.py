@@ -15,10 +15,17 @@ out=Image.new('RGB',(W,H2+PAD),BG);out.paste(im,(0,PAD));p=out.load()
 def P(x,y): return p[x,y+PAD]
 def S(x,y,c): p[x,y+PAD]=c
 # ---- coin haut-droit (castor) ----
+QE=[(-1.49e-03,5.2974e-01,335.96244),(-1.29e-03,4.2534e-01,358.99266),(-1.19e-03,3.6613e-01,382.2906),(-1.19e-03,3.6881e-01,390.09112)]
+def edge(i,y):
+    a,b,c=QE[i]
+    if y>=186: return a*y*y+b*y+c
+    y0=186;return a*y0*y0+b*y0+c+(2*a*y0+b)*(y-y0)
+def rlayer(x,y):
+    return 4 if x<edge(0,y) else 3 if x<edge(1,y) else 2 if x<edge(2,y) else 1 if x<edge(3,y) else 0
 def layer(x,y):
     d=y-(118+0.55*(x-304))
     lt=4 if d>=10 else 3 if d>=0 else 2 if d>=-18 else 1 if d>=-30 else 0
-    lr=4 if x<-0.1376*y+409.9 else 3 if x<-0.1515*y+422.83 else 2 if x<-0.1659*y+441.18 else 1 if x<-0.1616*y+448.83 else 0
+    lr=rlayer(x,y)
     return min(lt,lr)
 _LEFT={}
 def leftcol(y):
@@ -47,10 +54,18 @@ def aa(f,x,y,orig):
 for y in range(0,201):
     for x in range(293,W):
         if 255<=x<330 and y>=173+0.0177*(x-288)**2-3 and sum(src[x,y])>660: continue
-        if y>190 and x<360: continue
-        c=aa(sub_top,x,y,src[x,y])
-        if y>=184:
-            t=(y-184)/16;o=src[x,y];c=tuple(round(c[q]*(1-t)+o[q]*t) for q in range(3))
+        if y>190: continue
+        S(x,y,aa(sub_top,x,y,src[x,y]))
+def sub_side(x,y):
+    l=rlayer(x,y)
+    if l==4: return None
+    return COL[l]
+for y in range(186,280):
+    for x in range(340,W):
+        if x<edge(0,y)-3: continue
+        c=aa(sub_side,x,y,src[x,y])
+        if y>=268:
+            t=(y-268)/11;o=src[x,y];c=tuple(round(c[q]*(1-t)+o[q]*t) for q in range(3))
         S(x,y,c)
 # ---- bas du bouclier (géométrie) ----
 kL,bL=1.0907,-337.9; kR,bR=-1.0924,779.0; TX,TY,CK=220,485,2.2
