@@ -65,12 +65,37 @@ def sub_bot(x,y):
     if d<22.5: return WH
     if d<30.5: return ORB
     return INTB
-Y0,Y1=434,446
+Y0,Y1=418,446
+from PIL import ImageDraw
+SC=4
+def bez(p0,p1,p2,n=60):
+    return [((1-t)**2*p0[0]+2*(1-t)*t*p1[0]+t*t*p2[0],(1-t)**2*p0[1]+2*(1-t)*t*p1[1]+t*t*p2[1]) for t in [i/n for i in range(n+1)]]
+Lx=lambda y:kL*y+bL; Rx=lambda y:kR*y+bR
+TIP=(220,492)
+poly=[(Lx(380),380),(Lx(430),430)]+bez((Lx(430),430),(Lx(485),485),TIP)[1:]+bez(TIP,(Rx(485),485),(Rx(430),430))[1:]+[(Rx(380),380)]
+Hh=H2*SC;Ww=W*SC
+mimg=Image.new('L',(Ww,Hh),0);ImageDraw.Draw(mimg).polygon([(x*SC,y*SC) for x,y in poly],fill=1)
+mask=np.asarray(mimg).astype(bool)
+y0=(Y0-2)*SC
+sub=mask[y0:]
+d=ndimage.distance_transform_edt(sub)/SC
+yy,xx=np.mgrid[y0:Hh,0:Ww].astype(float);X=(xx+0.5)/SC;Yy=(yy+0.5)/SC
+st=np.minimum(np.abs(X-(182.5-(Yy-396)*0.226))-4.8,np.abs(X-(255.5+(Yy-396)*0.214))-4.3)
+BLB=np.array((5,42,205));ORB=np.array((249,102,12));WHa=np.array(WH);INa=np.array(INTB);BGa=np.array(BG)
+C=np.empty(d.shape+(3,));C[:]=INa
+C[d<30.5]=ORB
+C[d<22.5]=WHa
+C[(st<5.5)&(d>=10.5)]=BLB
+C[(st<0)&(d>=9)]=WHa
+C[d<9]=BLB
+C[~sub]=BGa
+lo=C.reshape(C.shape[0]//SC,SC,C.shape[1]//SC,SC,3).mean((1,3))
 for y in range(Y0,H2):
     for x in range(W):
-        c=aa(sub_bot,x,y,None)
-        if y<=Y1:
-            t=(y-Y0)/(Y1-Y0);o=P(x,y);c=tuple(round(o[q]*(1-t)+c[q]*t) for q in range(3))
+        c=tuple(int(round(v)) for v in lo[y-(Y0-2),x])
+        between=(182.5-(y-396)*0.226)<=x<=(255.5+(y-396)*0.214)
+        if y<=Y1 and not between:
+            t=min(1,max(0,(y-434)/(Y1-434)));o=P(x,y);c=tuple(round(o[q]*(1-t)+c[q]*t) for q in range(3))
         S(x,y,c)
 out.save('/tmp/logo/clean.png')
 # ---- transparence : contour blanc net d'épaisseur fixe ----
