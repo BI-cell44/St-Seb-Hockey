@@ -18,12 +18,16 @@ def S(x,y,c): p[x,y+PAD]=c
 def layer(x,y):
     d=y-(118+0.55*(x-304))
     lt=4 if d>=10 else 3 if d>=0 else 2 if d>=-18 else 1 if d>=-30 else 0
-    e=(392+(190-y)*0.15)-x
-    lr=4 if e>=9 else 3 if e>=0 else 2 if e>=-15.5 else 1 if e>=-25 else 0
+    lr=4 if x<-0.1376*y+409.9 else 3 if x<-0.1515*y+422.83 else 2 if x<-0.1659*y+441.18 else 1 if x<-0.1616*y+448.83 else 0
     return min(lt,lr)
+_LEFT={}
+def leftcol(y):
+    if y not in _LEFT:
+        cs=[src[x,yy] for yy in range(max(0,y-6),min(H,y+7)) for x in range(282,293) if src[x,yy][2]>120 and src[x,yy][0]<60 and src[x,yy][1]<90]
+        _LEFT[y]=tuple(sum(c[i] for c in cs)/len(cs) for i in range(3)) if len(cs)>20 else INT
+    return _LEFT[y]
 def intcol(x,y):
-    c=src[292,y]
-    if not(c[2]>120 and c[0]<80): return INT
+    c=leftcol(y)
     t=min(1,max(0,(x-293)/40));return tuple(round(c[i]*(1-t)+INT[i]*t) for i in range(3))
 def sub_top(x,y):
     ri=math.hypot(x-220.6,y-88.7);ro=math.hypot(x-221.2,y-89.5)
@@ -40,10 +44,14 @@ def aa(f,x,y,orig):
         if c is None: c=orig
         acc=[a+b for a,b in zip(acc,c)]
     return tuple(a//len(SS) for a in acc)
-for y in range(0,191):
+for y in range(0,201):
     for x in range(293,W):
         if 255<=x<330 and y>=173+0.0177*(x-288)**2-3 and sum(src[x,y])>660: continue
-        S(x,y,aa(sub_top,x,y,src[x,y]))
+        if y>190 and x<360: continue
+        c=aa(sub_top,x,y,src[x,y])
+        if y>=184:
+            t=(y-184)/16;o=src[x,y];c=tuple(round(c[q]*(1-t)+o[q]*t) for q in range(3))
+        S(x,y,c)
 # ---- bas du bouclier (géométrie) ----
 kL,bL=1.0907,-337.9; kR,bR=-1.0924,779.0; TX,TY,CK=220,485,2.2
 nL=math.sqrt(1+kL*kL);nR=math.sqrt(1+kR*kR);nC=math.sqrt(1+1/CK**2)
