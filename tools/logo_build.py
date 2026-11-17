@@ -90,7 +90,7 @@ def sub_bot(x,y):
     if d<9: return BLB
     s=stick(x,y)
     if s<0: return WH
-    if s<5.5 and d>=10.5: return BLB
+    if s<5.5 and d>=8.5: return BLB
     if d<22.5: return WH
     if d<30.5: return ORB
     return INTB
@@ -114,7 +114,7 @@ BLB=np.array((5,42,205));ORB=np.array((249,102,12));WHa=np.array(WH);INa=np.arra
 C=np.empty(d.shape+(3,));C[:]=INa
 C[d<30.5]=ORB
 C[d<22.5]=WHa
-C[(st<5.5)&(d>=10.5)]=BLB
+C[(st<5.5)&(d>=8.5)]=BLB
 C[(st<0)&(d>=9)]=WHa
 C[d<9]=BLB
 C[~sub]=BGa
