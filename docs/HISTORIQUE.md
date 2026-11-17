@@ -4,6 +4,9 @@ Chronologie des demandes de l'utilisateur et de ce qui a été livré. Les entr�
 
 ---
 
+## 17/11/2026 — Bandeau des commandes selon les joueurs actifs
+- Le bandeau en bas de l'écran n'affiche que les commandes des appareils qui jouent : une ligne « Manette » (si au moins une manette joue), une ligne « Clavier » (clavier 1, ZQSD + J K I L, avec les flèches si le clavier 2 ne joue pas), une ligne « Clavier 2 » (flèches + pavé numérique). Chaque ligne indique le ou les joueurs concernés (J1, J2…).
+
 ## 17/11/2026 — Logo officiel du club
 - L'écusson dessiné en SVG est remplacé par le logo officiel fourni par l'utilisateur, sans la mascotte (castor) : coin haut-droit du bouclier reconstruit, crosse droite d'origine conservée (les deux crosses ne sont pas à la même hauteur, pas d'effet miroir).
 - Fond rendu transparent. Bord droit de la balle retravaillé (anneau bleu recalé sur le cercle d'origine). Bas du bouclier (pointe, V orange, liseré, bas des crosses) redessiné en formes nettes (côtés de la pointe en courbe lisse), positions reprises du premier logo basse qualité. Bas des crosses redessinés d'un seul tenant (plus de cassure), contours bleus jusqu'à la bordure du bouclier ; contour de la tête de crosse droite lissé. Bandes orange et bleue de droite raccordées à l'anneau bleu de la balle. Bord droit : bandes (orange, blanche, bleue) redessinées en courbes lisses du coin jusqu'au bandeau, sans vague. Contour blanc extérieur d'épaisseur fixe et net, complet au-dessus de la balle.

@@ -2,6 +2,8 @@
 
 _Dernière mise à jour : 17 novembre 2026 (création de St Seb Hockey 26, dérivé de Turf Hockey 26 aux couleurs du Saint-Sébastien Hockey Club)._
 
+**Bandeau des commandes** (`updateHint`) : une ligne par type d'appareil qui joue (manette / clavier 1 / clavier 2).
+
 **Charte club** : variables CSS `--night/--panel/--line` (bleus), `--home` orange, `--accent` orange clair, `--club` bleu roi ; logo officiel `.crest` (WebP base64, source `assets/logo-sshc.webp`) dans le menu ; couleurs du terrain dans `drawPitch` (section Rendu).
 
 ## Résumé
