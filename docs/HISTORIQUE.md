@@ -4,6 +4,9 @@ Chronologie des demandes de l'utilisateur et de ce qui a été livré. Les entr�
 
 ---
 
+## 17/11/2026 — Écusson plus fidèle
+- Écusson SVG redessiné : bandeau plus haut et plus large, « hockey club » placé dans le bandeau sous « Saint-Sébastien » (il débordait et devenait illisible), crosses à tête plus épaisse, balle plus détaillée.
+
 ## 17/11/2026 — St Seb Hockey 26 : version aux couleurs du club
 - Demande : reprendre Turf Hockey 26 aux couleurs du Saint-Sébastien Hockey Club, titre « St Seb Hockey 26 », dans le nouveau dépôt https://github.com/BI-cell44/St-Seb-Hockey (le design d'origine reste dans Turf-Hockey).
 - Charte : bleu roi `#1d47c2`, orange `#ff7a1a`, blanc ; fonds et panneaux en bleu nuit, accent orange (au lieu du jaune).
