@@ -6,7 +6,7 @@ Chronologie des demandes de l'utilisateur et de ce qui a été livré. Les entr�
 
 ## 17/11/2026 — Logo officiel du club
 - L'écusson dessiné en SVG est remplacé par le logo officiel fourni par l'utilisateur, sans la mascotte (castor) : coin haut-droit du bouclier reconstruit, crosse droite d'origine conservée (les deux crosses ne sont pas à la même hauteur, pas d'effet miroir).
-- Fond rendu transparent ; le bas de la photo source étant coupé, la pointe du bouclier est fondue.
+- Fond rendu transparent. Bord droit de la balle retravaillé (anneau bleu recalé sur le cercle d'origine). Bas du bouclier (pointe, V orange, liseré) reconstitué d'après le premier logo basse qualité, recalé à l'échelle.
 - Image intégrée en WebP base64 dans `index.html` (copie dans `assets/logo-sshc.webp`).
 
 ## 17/11/2026 — Écusson plus fidèle

@@ -4,7 +4,7 @@ Priorités : **P1** = demandé ou bloquant, **P2** = amélioration utile, **P3**
 Quand un élément est terminé, le retirer d'ici et l'ajouter dans `HISTORIQUE.md`.
 
 ## À confirmer avec l'utilisateur
-- **P1 — Charte St Seb** : faire valider le logo (pointe du bouclier coupée dans la photo source : un fichier complet sans mascotte serait idéal), les teintes et le nom « ST SEB » de l'équipe domicile.
+- **P1 — Charte St Seb** : faire valider le logo (pointe du bouclier reconstituée : un fichier officiel complet sans mascotte serait idéal), les teintes et le nom « ST SEB » de l'équipe domicile.
 - **P1 — Tactile sur vrai téléphone** : faire valider par l'utilisateur la taille et la position des boutons, le confort du joystick, et si le jeu en paysage est fluide.
 - **P1 — Tir chargé** : la demande « quand on a chargé le tir la balle part et ne peut pas rester chargée » a été interprétée comme « tir automatique quand la jauge est pleine ». Si l'utilisateur voulait l'inverse (garder la jauge pleine tant que le bouton est tenu), retirer le bloc `p.full` dans `humanControl`.
 - **P1 — Manettes réelles** : faire confirmer que la détection, la navigation des menus et les boutons répondent bien avec ses manettes (modèle et navigateur ?).
