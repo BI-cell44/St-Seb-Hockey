@@ -33,7 +33,7 @@ def sub_top(x,y):
     ri=math.hypot(x-220.6,y-88.7);ro=math.hypot(x-221.2,y-89.5)
     if ri<=77: return None
     if ro<=85.4: return BL
-    if ro<=88.5 and layer(x,y)<4: return WH
+    if ro<=88.5 and layer(x,y)<3: return WH
     if 288<=x<=330 and y>=173+0.0177*(x-288)**2: return WH
     l=layer(x,y);return intcol(int(x),int(y)) if l==4 else COL[l]
 SS=[(i/3-1/3,j/3-1/3) for i in range(3) for j in range(3)]
