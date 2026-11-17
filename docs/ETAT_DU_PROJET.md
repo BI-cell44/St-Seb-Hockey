@@ -2,7 +2,7 @@
 
 _Dernière mise à jour : 17 novembre 2026 (création de St Seb Hockey 26, dérivé de Turf Hockey 26 aux couleurs du Saint-Sébastien Hockey Club)._
 
-**Charte club** : variables CSS `--night/--panel/--line` (bleus), `--home` orange, `--accent` orange clair, `--club` bleu roi ; écusson SVG `.crest` dans le menu ; couleurs du terrain dans `drawPitch` (section Rendu).
+**Charte club** : variables CSS `--night/--panel/--line` (bleus), `--home` orange, `--accent` orange clair, `--club` bleu roi ; logo officiel `.crest` (WebP base64, source `assets/logo-sshc.webp`) dans le menu ; couleurs du terrain dans `drawPitch` (section Rendu).
 
 ## Résumé
 Le jeu est **jouable de bout en bout** : menu → placement des manettes → match (périodes, pauses, statistiques) → écran de fin → rejouer ou menu. Deux modes, cinq niveaux d'IA, jusqu'à 4 joueurs humains en local.
