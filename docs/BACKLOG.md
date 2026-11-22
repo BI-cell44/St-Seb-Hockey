@@ -17,6 +17,8 @@ Quand un élément est terminé, le retirer d'ici et l'ajouter dans `HISTORIQUE.
 
 - **P1 — Sprint auto mobile** : faire valider le ressenti sur téléphone (seuils 88 % / 75 % dans `setJ`).
 
+- **P1 — Zone de tir en salle** : confirmer la règle voulue (pointillé valable ?). FIH : tir depuis le cercle plein uniquement.
+
 ## Gameplay
 - P2 — Corners de pénalité (penalty corners) et pénalty (stroke) : règles majeures du hockey absentes.
 - P2 — Fautes : obstruction, pied, crosse haute → coups francs.

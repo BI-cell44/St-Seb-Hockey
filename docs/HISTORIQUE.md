@@ -4,6 +4,9 @@ Chronologie des demandes de l'utilisateur et de ce qui a été livré. Les entr�
 
 ---
 
+## 22/11/2026 — Bandeau discret, zone de tir en salle, remises en jeu (repris de Turf Hockey)
+- Mêmes changements que dans Turf-Hockey (commit 218fab3) : bandeau des scores compact et semi-transparent (couleurs club), caméra décalée de 14 px, but valable depuis la zone pointillée en salle (`M.SHOOT=3`, `inZone`), règle des 5 m / 3 m sur les remises en jeu (`rest`, branche `held` de l'IA). Vérifié sur PC et téléphone (captures).
+
 ## 17/11/2026 — Bandeau des commandes selon les joueurs actifs
 - Le bandeau en bas de l'écran n'affiche que les commandes des appareils qui jouent : une ligne « Manette » (si au moins une manette joue), une ligne « Clavier » (clavier 1, ZQSD + J K I L, avec les flèches si le clavier 2 ne joue pas), une ligne « Clavier 2 » (flèches + pavé numérique). Chaque ligne indique le ou les joueurs concernés (J1, J2…), écrits dans leur couleur de joueur.
 
